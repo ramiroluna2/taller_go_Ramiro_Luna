@@ -1,21 +1,29 @@
 package main
 
 import (
-  "fmt"
+	"math/rand"
 )
 
-//TIP <p>To run your code, right-click the code and select <b>Run</b>.</p> <p>Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.</p>
-
 func main() {
-  //TIP <p>Press <shortcut actionId="ShowIntentionActions"/> when your caret is at the underlined text
-  // to see how GoLand suggests fixing the warning.</p><p>Alternatively, if available, click the lightbulb to view possible fixes.</p>
-  s := "gopher"
-  fmt.Println("Hello and welcome, %s!", s)
 
-  for i := 1; i <= 5; i++ {
-	//TIP <p>To start your debugging session, right-click your code in the editor and select the Debug option.</p> <p>We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-	// for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.</p>
-	fmt.Println("i =", 100/i)
-  }
+	votos := []int{}
+	for i := 0; i < 10; i++ {
+		voto := rand.Intn(5) + 1
+		votos = append(votos, voto)
+	}
+	votosContados := make(map[int]int)
+	for _, voto := range votos {
+		votosContados[voto]++
+	}
+	for i := 1; i <= 5; i++ {
+		if votosContados[i] > 0 {
+			println("Voto", i, ":", votosContados[i])
+		}
+	}
+	if votosContados[4]+votosContados[5] > votosContados[1]+votosContados[2] {
+		println("Buen resultado")
+	} else {
+		println("Resultado mejorable")
+	}
+
 }
